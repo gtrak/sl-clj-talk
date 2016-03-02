@@ -297,6 +297,9 @@
   [:div.slides
    title-slide
 
+   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+   ;; What's Good about the Language
+
    ;; function basics
    [js-2-clojure]
    [calling-stuff]
@@ -337,6 +340,9 @@
      "Re-use components in different contexts, processes, servers, etc.."]
     [:small.pad80.fragment
      "Data/Values give us the ability to decouple things easily"]]
+
+   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+   ;; How it actually works
 
    [:section
     [:h2 "Compose Systems"]
@@ -432,6 +438,8 @@
             (js/encodeURIComponent)
             (.replace \"+\" \"%20\"))))"]]]
 
+   ;; TODO: ruby-to-clojure-examples
+   ;; TODO: microservices?
 
    [misc-examples]
 
