@@ -1,0 +1,3 @@
+var Reveal = {
+    'initialize': function() {}
+};
