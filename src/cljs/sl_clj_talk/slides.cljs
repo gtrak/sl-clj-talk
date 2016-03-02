@@ -417,25 +417,6 @@
      [:a
       {:href "http://gtrak.github.io/bohconf.clojure"}
       "http://gtrak.github.io/bohconf.clojure"]]]
-   [:section [:h3 "MORE Demo Time"]]
+   [:section [:h3 "Let's hack!"]]
    [:section
-    [:h3 "Thanks for coming!"]
-    [:h5 "We are:"]
-    [:hr]
-    [:div
-     [:p "Gary Trakhman"]
-     [:p [:a {:href "https://twitter.com/gtrakGT"} "@gtrakGT"]]
-     [:p
-      "\n              Software Engineer at "
-      [:a {:href "http://www.revelytix.com/"} "Revelytix, Inc."]]]
-    [:hr]
-    [:div
-     [:p "Jason Lewis"]
-     [:p
-      [:a
-       {:href "https://twitter.com/canweriotnow"}
-       "@canweriotnow"]]
-     [:p
-      "\n              CTO at "
-      [:a {:href "http://anestuary.com"} "An Estuary, LLC"]]]
-    [:hr]]])
+    [:h3 "Thanks for coming!"]]])
