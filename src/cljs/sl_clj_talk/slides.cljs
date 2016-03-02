@@ -218,7 +218,13 @@
    ;; TODO split or replace
    [fragment-list
     :ol
-    "Every object is also a 'value'"
+    [:div
+     "Every object is also a 'value'"
+     [clj-example 0
+      ";; even functions"
+      "(defn hello-world [] \"Hello, world!\")"
+      ";; #'user/hello-world"
+      ";; same as (def (fn [] ...))"]]
     "Values have true equality"
     "Values Never Change (Immutability)"
     "Without immutability, objects are just buckets in memory"]
