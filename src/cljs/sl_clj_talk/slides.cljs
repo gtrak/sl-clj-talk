@@ -158,6 +158,82 @@
      "(someFunction arg1 arg2 arg3)"]
     "Done."]])
 
+
+(defn data-intro []
+  [:section
+   [:h2 "Data"]
+   "Should look familiar"
+   [clj-data-example
+    25
+    {:key1 5 :key2 nil}
+    [1 2 3 4 "five"]]
+
+   [:p.fragment "Don't freak out"]
+
+   [:div.fragment
+    [clj-data-example
+     20
+     '[1 [2] #{3} {4 4} (constantly 5)]]]
+
+   [:p.fragment "DON'T FREAK OUT"]
+
+   [:div.fragment
+    [clj-repl-example
+     0
+     "=> (range 10)"
+     "(0 1 2 3 4 5 6 7 8 9)"
+     "=> (take 11 (range))"
+     "(0 1 2 3 4 5 6 7 8 9 10)"
+     "=> (last (range)) ;; Hope you don't mind waiting a long time."]]])
+
+(defn everything-is-data []
+  [:section
+   [:h2 "Everything is Data"]
+   [clj-example
+    0
+    ";; semicolons are comments, commas are ignored,"
+    ";; check out this weird hash-map"
+    "{:a-keyword 5,"
+    " \"a string key\" \"a string value\","
+    " [\"a\" :vector \"acting\" :as [:a :compound] \"key\"]"
+    " (fn [] \"a no-arg function\n  that returns this multi-line string,\n  the function itself is the value\"),"
+    " + '(functions can be keys too, and when\n    you quote symbols, you just\n    have symbols, not what they represent)}"]
+
+   [:div.fragment
+    "Evals to.."
+    [clj-example
+     0
+     "{:a-keyword 5,"
+     " \"a string key\" \"a string value\","
+     " [\"a\" :vector \"acting\" :as [:a :compound] \"key\"]"
+     " #&ltuser$eval331$fn__332 user$eval331$fn__332@a585ef>,"
+     " #&ltcore$_PLUS_ clojure.core$_PLUS_@20a12d8f>"
+     " (functions can be keys too and when you quote symbols\n you just have symbols not what they represent)}"]]])
+
+
+(defn immutability-intro []
+  [:section
+   [:h3 "Anything can be a key, because"]
+
+   ;; TODO split or replace
+   [fragment-list
+    :ol
+    "Every object is also a 'value'"
+    "Values have true equality"
+    "Values Never Change (Immutability)"
+    "Without immutability, objects are just buckets in memory"]
+   [:small.pad80.fragment
+    "...have you ever trusted a bucket with no values?"]])
+
+(defn immutability-questions []
+  [:section
+   "Some Questions..."
+   [fragment-list :ul
+    "Q: Why should I care about (immutable) values?"
+    "A: I can write code and rest assured that other parts of my program can't change the data that I'm working on."
+    "Q: But I thought every program is simply a short-lived http request handler that talks to a database? We just throw the program state out after every request!"
+    "A: Well, that's one way to do it."]])
+
 (defn slides-div []
   [:div.slides
    title-slide
@@ -184,73 +260,14 @@
       "Q: Why do you think we've gotten so much mileage out of javascript?"]
      [:li.fragment "A: Lisp is very powerful, and it will never die"]]]
 
-   [:section
-    [:h2 "Data"]
-    "Should look familiar"
-    [clj-data-example
-     25
-     {:key1 5 :key2 nil}
-     [1 2 3 4 "five"]]
-
-    "Don't freak out"
-
-    [clj-data-example
-     20
-     '[1 [2] #{3} {4 4} (constantly 5)]]
-
-    "DON'T FREAK OUT"
-
-    [clj-repl-example
-     0
-     "=> (range 10)"
-     "(0 1 2 3 4 5 6 7 8 9)"
-     "=> (take 11 (range))"
-     "(0 1 2 3 4 5 6 7 8 9 10)"
-     "=> (last (range)) ;; Hope you don't mind waiting a long time."]]
+   ;; data
+   [data-intro]
+   [everything-is-data]
 
 
-   [:section
-    [:h2 "Everything is Data"]
-    [clj-example
-     0
-     ";; semicolons are comments, commas are ignored,"
-     ";; check out this weird hash-map"
-     "{:a-keyword 5,"
-     " \"a string key\" \"a string value\","
-     " [\"a\" :vector \"acting\" :as [:a :compound] \"key\"]"
-     " (fn [] \"a no-arg function\n  that returns this multi-line string,\n  the function itself is the value\"),"
-     " + '(functions can be keys too, and when\n    you quote symbols, you just\n    have symbols, not what they represent)}"]
-
-    "Evals to.."
-    [clj-example
-     0
-     "{:a-keyword 5,"
-     " \"a string key\" \"a string value\","
-     " [\"a\" :vector \"acting\" :as [:a :compound] \"key\"]"
-     " #&ltuser$eval331$fn__332 user$eval331$fn__332@a585ef>,"
-     " #&ltcore$_PLUS_ clojure.core$_PLUS_@20a12d8f>"
-     " (functions can be keys too and when you quote symbols\n you just have symbols not what they represent)}"]]
-
-   [:section
-    [:h3 "Anything can be a key, because"]
-
-    ;; TODO split or replace
-    [fragment-list
-     :ol
-     "Every object is also a 'value'"
-     "Values have true equality"
-     "Values Never Change (Immutability)"
-     "Without immutability, objects are just buckets in memory"]
-    [:small.pad80.fragment
-     "...have you ever trusted a bucket with no values?"]]
-
-   [:section
-    "Some Questions..."
-    [fragment-list :ul
-     "Q: Why should I care about (immutable) values?"
-     "A: I can write code and rest assured that other parts of my program can't change the data that I'm working on."
-     "Q: But I thought every program is simply a short-lived http request handler that talks to a database? We just throw the program state out after every request!"
-     "A: Well, that's one way to do it."]]
+   ;; immutability
+   [immutability-intro]
+   [immutability-questions]
 
    [:section
     [:img {:src "lib/img/fig17.gif"}]
