@@ -372,9 +372,9 @@
      "Learn Clojure"
      "Build cool things"
      "Screencasts!"]
-    [:div.pad80
-     [:small
-      "(You ruby guys really know how to make good screencasts)"]]]
+    [:div
+     [:small.fragment
+      "(You ruby devs really know how to make good screencasts)"]]]
 
    [:section
     [:h3 "Demo Time"]
