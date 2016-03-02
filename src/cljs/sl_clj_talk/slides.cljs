@@ -139,7 +139,10 @@
      30
      "(fn [] 5)"]
 
-    "Welcome to Clojure."]
+    "Welcome to Clojure."
+    [:div.fragment
+     [:small
+      "Everything is an expression (just like Ruby!)"]]]
 
    [:section
     [:h3 "Calling Stuff"]
@@ -218,6 +221,8 @@
 
    [:section
     [:h3 "Anything can be a key, because"]
+
+    ;; TODO split or replace
     [fragment-list
      :ol
      "Every object is also a 'value'"
@@ -230,7 +235,7 @@
    [:section
     "Some Questions..."
     [fragment-list :ul
-     "Q: Why is this big news?"
+     "Q: Why should I care about (immutable) values?"
      "A: I can write code and rest assured that other parts of my program can't change the data that I'm working on."
      "Q: But I thought every program is simply a short-lived http request handler that talks to a database? We just throw the program state out after every request!"
      "A: Well, that's one way to do it."]]
