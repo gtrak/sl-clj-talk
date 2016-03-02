@@ -25,11 +25,7 @@
           .initialize
           (cond->
               reveal-state  (.setState reveal-state)))
-        ))
-    :component-did-update
-    (fn [this]
-      (print "UPDATE")
-      #_(.initialize js/Reveal))}))
+        ))}))
 
 
 (defonce watch-state
