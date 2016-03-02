@@ -234,127 +234,13 @@
     "Q: But I thought every program is simply a short-lived http request handler that talks to a database? We just throw the program state out after every request!"
     "A: Well, that's one way to do it."]])
 
-(defn slides-div []
-  [:div.slides
-   title-slide
 
-   ;; function basics
-   [js-2-clojure]
-   [calling-stuff]
 
-   ;; smug lisp weenieism
+
+(defn misc-examples []
+  [:section
    [:section
-    [:h2 "This isn't an accident"]
-    [:ul
-     [:li.fragment "Javascript is 'Lisp in C's Clothing'"]
-     [:li.fragment
-      "Says Crockford: "
-      [:a
-       {:href "http://www.crockford.com/javascript/javascript.html"}
-       "http://www.crockford.com/javascript/javascript.html"]]]]
-
-   [:section
-    [:h2 "Put another way..."]
-    [:ul
-     [:li
-      "Q: Why do you think we've gotten so much mileage out of javascript?"]
-     [:li.fragment "A: Lisp is very powerful, and it will never die"]]]
-
-   ;; data
-   [data-intro]
-   [everything-is-data]
-
-
-   ;; immutability
-   [immutability-intro]
-   [immutability-questions]
-
-   [:section
-    [:img {:src "lib/img/fig17.gif"}]
-    [:small
-     [:a
-      {:href
-       "http://www.ibm.com/developerworks/library/wa-aj-multitier2/"}
-      "http://www.ibm.com/developerworks/library/wa-aj-multitier2/"]]]
-
-   [:section
-    [:h3 "Node.js..."]
-    [:img {:src "lib/img/eventloop.png"}]
-    [:small
-     [:a
-      {:href
-       "http://www.andrerodrigues.me/isel-workshop/intro.html#/24"}
-      "http://www.andrerodrigues.me/isel-workshop/intro.html#/24"]]]
-
-   [:section
-    [:h3 "Node.js... is nothing new"]
-    [fragment-list :ul
-     "We can write our own loops"
-     "Node.js assumes threaded programming is hard, and throws out the baby with the bath-water"
-     "Threaded programming is hard without real 'Data' or 'Values'"
-     "Composition of any sort is simpler with data"]]
-   [:section
-    [:h3 "Approximating Node.js"]
-    [fragment-list :ul
-     "'Agents' are asynchronous queues, sharing threadpools to do work, storing the last value returned."
-     [clj-example
-      0
-      "\n(defn inc-last [val]\n  (conj val (inc (last val))))\n\n;; We make a sequence of 10 inc-last tasks,\n;; then follow-up with a 'println' task\n(def tasks\n  (concat (repeat 10 inc-last)\n          [(fn [val]\n             (println val)\n             val)]))\n            "]]]
-
-   [:section
-    [clj-example
-     10
-     "\n;; starts off with a value of [0]\n(let [a (agent [0])]\n  (doseq [t tasks]\n    (send a t)))\n\n;; prints: [0 1 2 3 4 5 6 7 8 9 10]\n          "]
-    [fragment-list :ul
-     "Agents are not values, they are mutable references with asynchronous semantics"
-     "Clojure has other mutable references types, acting as 'containers' for values, for various use cases."
-     "Nothing prevents you from making your own."]]
-
-   [:section
-    [:h2 "MORE!"]
-    [clj-example 0
-     "\n(let [f (future (do-a-bunch-of-stuff))] ;; in another thread\n  (do-stuff-in-this-thread)\n  ;; return the value in f, blocking if it's not finished\n  (deref f))\n        "]
-
-    "Basically,\n          "
-    [fragment-list :ul
-     "Clojure promotes your ability to do whatever you want by simplifying things to their bare essence."]]
-   [:section
-    [:h2 "What We Really Want"]
-    "Tools that let us"
-    [fragment-list :ol
-     "Compose Systems"
-     "Change our minds"
-     "Re-use components in different contexts, processes, servers, etc.."]
-    [:small.pad80.fragment
-     "Data/Values give us the ability to decouple things easily"]]
-
-   [:section
-    [:h1 "Brainsplode"]
-    "'(code is data)"]
-
-   [:section
-    [:h1 "R-E-P-L"]
-    "Read-Eval-Print-Loop"
-    [fragment-list :ol
-     "Read: (read-string \"(+ 1 2)\") => '(+ 1 2)"
-     "Eval: (eval '(+ 1 2)) => 3"
-     "What if there's something in the middle?"]
-    [:div.fragment
-     [clj-example
-      0
-      "\n(class (read-string \"(+ 1 2)\"))\n;; clojure.lang.PersistentList\n\n(map class (read-string \"(+ 1 2)\"))\n;; (clojure.lang.Symbol java.lang.Long java.lang.Long)\n          "]]]
-
-   [:section
-    [clj-example 10
-     "\n(defn only-even!\n [val]\n (if (and (integer? val) (odd? val))\n   (inc val)\n   val))\n\n(map only-even! (read-string \"(+ 1 2)\"))\n;; '(+ 2 2)\n\n(eval (map only-even! (read-string \"(+ 1 2)\")))\n;; 4\n          "]
-    "\n\nThis is only the beginning\n        "]
-
-   [:section
-    "\n          Everybody likes chaining, right?\n          "
-    [js-example 0
-     "\n$(\"#p1\").css(\"color\",\"red\").slideUp(2000).slideDown(2000);\n          "]
-    "\n          How is this implemented? Is this reusable?\n        "]
-
+    [:h1 "Code Examples"]]
    [:section
     "\n          What if, as a library author, you could just not write that\n          fluent interface code at all?\n          "
     [clj-example 0
@@ -398,27 +284,90 @@
     [clj-example 0
      "(take 10 (square-wave 3))"
      ";; (-1 -1 -1 1 1 1 -1 -1 -1 1)"]
-    "\n          No mutable variables\n        "]
+    "\n          No mutable variables\n        "]])
+
+
+(defn slides-div []
+  [:div.slides
+   title-slide
+
+   ;; function basics
+   [js-2-clojure]
+   [calling-stuff]
+
+   ;; smug lisp weenieism
+   [:section
+    [:h2 "This isn't an accident"]
+    [:ul
+     [:li.fragment "Javascript is 'Lisp in C's Clothing'"]
+     [:li.fragment
+      "Says Crockford: "
+      [:a
+       {:href "http://www.crockford.com/javascript/javascript.html"}
+       "http://www.crockford.com/javascript/javascript.html"]]]]
 
    [:section
-    [:h3 "Call to Action"]
+    [:h2 "Put another way..."]
+    [:ul
+     [:li
+      "Q: Why do you think we've gotten so much mileage out of javascript?"]
+     [:li.fragment "A: Lisp is very powerful, and it will never die"]]]
+
+   ;; data
+   [data-intro]
+   [everything-is-data]
+
+
+   ;; immutability
+   [immutability-intro]
+   [immutability-questions]
+
+   [:section
+    [:h2 "What We Really Want"]
+    "Tools that let us"
     [fragment-list :ol
-     "Learn Clojure"
-     "Build cool things"
-     "Screencasts!"]
-    [:div
-     [:small.fragment
-      "(You ruby devs really know how to make good screencasts)"]]]
+     "Compose Systems"
+     "Change our minds"
+     "Re-use components in different contexts, processes, servers, etc.."]
+    [:small.pad80.fragment
+     "Data/Values give us the ability to decouple things easily"]]
 
    [:section
-    [:h3 "Demo Time"]
-    [:h5 "Clojure on the Web"]
-    [:div.pad80
-     "\n            Now clone this:\n            "
-     [:br]
+    [:h1 "R-E-P-L"]
+    "Read-Eval-Print-Loop"
+    [fragment-list :ol
+     "Read: (read-string \"(+ 1 2)\") => '(+ 1 2)"
+     "Eval: (eval '(+ 1 2)) => 3"
+     "What if there's something in the middle?"]
+    [:div.fragment
+     [clj-example
+      0
+      "\n(class (read-string \"(+ 1 2)\"))\n;; clojure.lang.PersistentList\n\n(map class (read-string \"(+ 1 2)\"))\n;; (clojure.lang.Symbol java.lang.Long java.lang.Long)\n          "]]]
+
+
+   ;; TODO.. just a rando example. move or remove?
+   [:section
+    [clj-example 10
+     "\n(defn only-even!\n [val]\n (if (and (integer? val) (odd? val))\n   (inc val)\n   val))\n\n(map only-even! (read-string \"(+ 1 2)\"))\n;; '(+ 2 2)\n\n(eval (map only-even! (read-string \"(+ 1 2)\")))\n;; 4\n          "]
+    "\n\nThis is only the beginning\n        "]
+
+
+
+
+
+
+
+   [:section
+    [:img {:src "lib/img/fig17.gif"}]
+    [:small
      [:a
-      {:href "https://github.com/canweriotnow/bohjure"}
-      "\n              https://github.com/canweriotnow/bohjure\n            "]]]
+      {:href
+       "http://www.ibm.com/developerworks/library/wa-aj-multitier2/"}
+      "http://www.ibm.com/developerworks/library/wa-aj-multitier2/"]]]
+
+
+   [misc-examples]
+
    [:section
     [:h3 "Resources"]
     [:div
