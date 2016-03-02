@@ -91,34 +91,31 @@
    (for [item items]
      [:li.fragment item])))
 
+(def title-slide
+  [:section
+   [:h1 "'Getting' Clojure"]
+   [:h3 "'(Parentheses are just hugs for your code)"]
+   [:small
+    "Original Created by\n            "
+    [:a {:href "http://twitter.com/canweriotnow"} "Jason Lewis"]
+    "\n            / "
+    [:a {:href "http://twitter.com/gtrakgt"} "Gary Trakhman"]]
+   [:br]
+   [:small
+    "Cljs Version by\n"
+    [:a {:href "http://twitter.com/miltreder"} "Milt Reder"]]])
 
-
-(defn slides-div []
-  [:div.slides
-   [:section
-    [:h1 "'Getting' Clojure"]
-    [:h3 "'(Parentheses are just hugs for your code)"]
-    [:small
-     "Original Created by\n            "
-     [:a {:href "http://twitter.com/canweriotnow"} "Jason Lewis"]
-     "\n            / "
-     [:a {:href "http://twitter.com/gtrakgt"} "Gary Trakhman"]]
-    [:br]
-    [:small
-     "Cljs Version by\n"
-     [:a {:href "http://twitter.com/miltreder"} "Milt Reder"]]]
-
-   [:section
-    [:h2 "Functions"]
-    [:small "Javascript"]
+(defn js-2-clojure []
+  [:section
+   [:div
+    [:h3 "Functions"]
     [js-example
      30
      "function(){"
      "  return 5;"
      "  }"
      ]]
-
-   [:section
+   [:div.fragment
     "Put some parens around it, kill the braces"
 
     [js-example
@@ -128,7 +125,7 @@
      "  )"
      ]]
 
-   [:section
+   [:div.fragment
     "Change 'function' to 'fn', makes args into a vector"
     [clj-example
      30
@@ -136,7 +133,7 @@
      "  return 5;"
      "  )"]]
 
-   [:section
+   [:div.fragment
     "Kill the 'return', last thing's always returned."
     [clj-example
      30
@@ -145,19 +142,31 @@
     "Welcome to Clojure."
     [:div.fragment
      [:small
-      "Everything is an expression (just like Ruby!)"]]]
+      "Everything is an expression (just like Ruby!)"]]]])
 
-   [:section
-    [:h3 "Calling Stuff"]
-    [js-example
-     20
-     "someFunction(arg1, arg2, arg3)"]
-    "\n          Move the left parenthesis over a bit more...\n          "
+
+(defn calling-stuff []
+  [:section
+   [:h3 "Calling Stuff"]
+   [js-example
+    20
+    "someFunction(arg1, arg2, arg3)"]
+   [:div.fragment
+    "Move the left parenthesis over a bit more..."
     [clj-example
      20
      "(someFunction arg1 arg2 arg3)"]
-    "Done."]
+    "Done."]])
 
+(defn slides-div []
+  [:div.slides
+   title-slide
+
+   ;; function basics
+   [js-2-clojure]
+   [calling-stuff]
+
+   ;; smug lisp weenieism
    [:section
     [:h2 "This isn't an accident"]
     [:ul
