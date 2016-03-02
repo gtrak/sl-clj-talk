@@ -33,40 +33,43 @@
    [code-block
     "javascript"
     (str
-     "\n"
+     ;; "\n"
      (cstring/join "\n"
                   (map (partial str
                                 (apply str
                                        (repeat indent-n " ")))
                        ;; handle existing line breaks
                        (flatten (map cstring/split-lines ss))))
-     "\n\n")]])
+     "\n" ;; "\n\n"
+     )]])
 
 (defn clj-example [indent-n & ss]
   [:pre
    [code-block
     "clojure"
     (str
-     "\n"
+     ;; "\n"
      (cstring/join "\n"
                    (map (partial str
                                  (apply str
                                         (repeat indent-n " ")))
                         (flatten (map cstring/split-lines ss))))
-     "\n\n")]])
+     "\n" ;; "\n\n"
+     )]])
 
 (defn clj-repl-example [indent-n & ss]
   [:pre
    [code-block
     "clojure"
     (str
-     "\n"
+     ;; "\n"
      (cstring/join "\n"
                    (map (partial str
                                  (apply str
                                         (repeat indent-n " ")))
                         (flatten (map cstring/split-lines ss))))
-     "\n\n")]])
+     ;; "\n\n"
+     "\n")]])
 
 (defn clj-data-example [indent-n & data]
   [:pre
