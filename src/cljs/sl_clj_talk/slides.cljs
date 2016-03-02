@@ -108,7 +108,7 @@
 (defn js-2-clojure []
   [:section
    [:div
-    [:h3 "Functions"]
+    [:h3 "Intro: Functions"]
     [js-example
      30
      "function(){"
@@ -339,8 +339,34 @@
      "Data/Values give us the ability to decouple things easily"]]
 
    [:section
-    [:h1 "R-E-P-L"]
-    "Read-Eval-Print-Loop"
+    [:h2 "Compose Systems"]
+    [:small "Clojure encourages the composition of simple functions into complex applications"]
+    [clj-example
+     0
+     ";; function composition with comp (applied left to right)"
+     "(def dec-and-double (comp (partial * 2) dec))"
+     "(dec-and-double 3) ;; => 4"]
+    [clj-example
+     0
+     ";; more complex example: api routing with compojure"
+     "(ns hello-world.core
+  (:require [compojure.core :refer :all]
+            [compojure.route :as route]))
+
+;; defroutes is a macro used to define compojure routes
+(defroutes home-routes
+  (GET \"/\" [] \"<h1>Hello World</h1>\")
+  (route/not-found \"<h1>Page not found</h1>\"))
+
+(defroutes foo-routes
+  (GET \"/foo\" [] \"<h1>Hello Foo</h1>\"))
+
+;; routes composes route definitions into an app handler
+(def app (routes home-routes foo-routes))"]]
+
+   [:section
+    [:h2 "Change Our Minds"]
+    "Read-Eval-Print-Loop (REPL)"
     [fragment-list :ol
      "Read: (read-string \"(+ 1 2)\") => '(+ 1 2)"
      "Eval: (eval '(+ 1 2)) => 3"
@@ -357,19 +383,54 @@
      "\n(defn only-even!\n [val]\n (if (and (integer? val) (odd? val))\n   (inc val)\n   val))\n\n(map only-even! (read-string \"(+ 1 2)\"))\n;; '(+ 2 2)\n\n(eval (map only-even! (read-string \"(+ 1 2)\")))\n;; 4\n          "]
     "\n\nThis is only the beginning\n        "]
 
+   [:section
+    [:h3 "REPL-Driven Development"]
+    [:p "Lets you"]
+    [fragment-list :ul
+     "Redefine anything at runtime"
+     "Test ideas by implementing them immediately"
+     "Leverage rich editor integrations with tools like cider-emacs, cursive IDE, and vim-fireplace"]]
 
-
-
-
-
+   ;; maybe give them a repl to play with here
 
    [:section
-    [:img {:src "lib/img/fig17.gif"}]
-    [:small
-     [:a
-      {:href
-       "http://www.ibm.com/developerworks/library/wa-aj-multitier2/"}
-      "http://www.ibm.com/developerworks/library/wa-aj-multitier2/"]]]
+    [:h2 "Re-Use Components"]
+    [:p "Clojure is a hosted language, currently implemented in three environments:"]
+    [fragment-list :ul
+     "The Java Virtual Machine (JVM)"
+     "JavaScript (ClojureScript)"
+     ".NET Common Language Runtime (CLR)"]]
+
+   [:section
+    [:small "The Clojure core library is available on all three, but interop can differ:"]
+    [clj-example 0
+     ";; JVM"
+     "(type \"foo\") ;; => java.lang.String"
+     ";; JS"
+     "(type \"foo\") ;; => #object[String \"function String() { [native code] }\"]"]
+
+    [:div.fragment
+     [:small "With Reader Conditionals, we can write Clojure source for multiple targets:"]
+     [clj-example 0
+      ";; dates
+ (.getTime
+   #?(:clj (java.util.Date.)
+      :cljs (js/Date.)))
+;; uris
+#?(:clj
+   (defn url-encode
+    [string]
+    (some-> string
+            str
+            (URLEncoder/encode \"UTF-8\")
+            (.replace \"+\" \"%20\")))
+   :cljs
+   (defn url-encode
+    [string]
+    (some-> string
+            str
+            (js/encodeURIComponent)
+            (.replace \"+\" \"%20\"))))"]]]
 
 
    [misc-examples]
