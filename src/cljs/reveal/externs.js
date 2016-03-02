@@ -1,3 +1,5 @@
 var Reveal = {
-    'initialize': function() {}
+    'initialize': function() {},
+    'setState': function() {},
+    'getState': function() {}
 };
