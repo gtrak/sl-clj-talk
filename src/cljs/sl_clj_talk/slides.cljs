@@ -177,27 +177,51 @@
 
 (defn ruby-clj []
   [:section
-   [:h3 "Ruby -> Clojure"]
-   [:div.fragment
-    "Assignment"
-    [code-block "ruby"
-     "an-symbol = :an-keyword"]]
-   ;; [:br]
-   [:div.fragment
-    [code-block "clojure"
-     "(def an-symbol :an-keyword)"]]
-   [:small.fragment
-    "But don't do it again"]
+   [:h3 "Ruby -> clj"]
+   [:section
+    [:div.fragment
+     "Assignment"
+     [code-block "ruby"
+      "avar = :akeyword"]]
+    [:div.fragment
+     [code-block "clojure"
+      "(def avar :akeyword)"]]
+    [:small.fragment
+     "But don't do it again"]
 
-   [:div.fragment
-    "Functions"
-    [code-block "ruby"
-     "def square (x) x * x end"]]
-   ;; [:br]
-   [:div.fragment
-    [code-block "clojure"
-     "(defn square [x] (* x x))"]]
-   ])
+    [:div.fragment
+     "Functions"
+     [code-block "ruby"
+      "def square (x) x * x end"]]
+    [:div.fragment
+     [code-block "clojure"
+      "(defn square [x] (* x x))"]]
+
+    [:div.fragment
+     "Maps"
+     [code-block "ruby"
+      "amap = {key: \"value\"}"]]
+    [:div.fragment
+     [code-block "clojure"
+      "(def amap {:key \"value\"})"]]]
+
+   [:section
+    [:div
+     "Map Access"
+     [code-block "ruby"
+      "amap[:key]  => \"value\""]]
+    [:div.fragment
+     [code-block "clojure"
+      "(get amap :key) ;; => \"value\""]]
+    [:div.fragment
+     [code-block "clojure"
+      "(:key amap) ;; => \"value\""]]
+    [:div.fragment
+     [code-block "clojure"
+      "(:other-key amap \"foo\") ;; => \"foo\""]]
+    [:div.fragment
+     [code-block "clojure"
+      "(amap :key) ;; => \"value\""]]]])
 
 (defn misc-examples []
   [:section
@@ -299,7 +323,7 @@
    ;; How it actually works
 
    [:section
-    [:h2 "1 Compose Systems"]
+    [:h2 "1. Compose Systems"]
     [:small "Clojure encourages the composition of simple functions into complex applications"]
     [clj-example
      0
@@ -326,7 +350,7 @@
 (def app (routes home-routes foo-routes))"]]
 
    [:section
-    [:h2 "2 Change Our Minds"]
+    [:h2 "2. Change Our Minds"]
     "Read-Eval-Print-Loop (REPL)"
     [fragment-list :ol
      "Read: (read-string \"(+ 1 2)\") => '(+ 1 2)"
@@ -358,7 +382,7 @@
    ;; maybe give them a repl to play with here
 
    [:section
-    [:h2 "3 Re-Use Components"]
+    [:h2 "3. Re-Use Components"]
     [:p "Clojure is a hosted language, currently implemented in three environments:"]
     [fragment-list :ul
      "The Java Virtual Machine (JVM)"
