@@ -65,11 +65,14 @@
      30
      "(fn [] 5)"]
 
-    "Welcome to Clojure."
-    [:div.fragment
-     [:small
-      "Everything is an expression (just like Ruby!)"]]]])
+    "Welcome to Clojure."]])
 
+(def everything-is-an-expression
+  [:section
+   [:p
+    "Everything is an expression"]
+   [:p.fragment
+    "Just like Ruby!"]])
 
 (defn calling-stuff []
   [:section
@@ -325,6 +328,7 @@
 
    ;; function basics
    [js-2-clojure]
+   everything-is-an-expression
    [calling-stuff]
 
    ;; smug lisp weenieism
