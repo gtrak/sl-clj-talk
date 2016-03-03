@@ -15,17 +15,21 @@
 
 (def title-slide
   [:section
-   [:h1 "'Getting' Clojure"]
+   [:h1 "Still 'Getting' Clojure"]
    [:h3 "'(Parentheses are just hugs for your code)"]
    [:small
-    "Original Created by\n            "
+    "Original talk by\n            "
     [:a {:href "http://twitter.com/canweriotnow"} "Jason Lewis"]
     "\n            / "
     [:a {:href "http://twitter.com/gtrakgt"} "Gary Trakhman"]]
    [:br]
    [:small
     "Cljs Version by\n"
-    [:a {:href "http://twitter.com/miltreder"} "Milt Reder"]]])
+    [:a {:href "http://twitter.com/miltreder"} "Milt Reder"]]
+   [:br]
+   [:small
+    "With some editing and ruby help from\n"
+    [:a {:href "http://twitter.com/meatcomputer"} "Mikaela Patella"]]])
 
 (defn js-2-clojure []
   [:section
@@ -471,7 +475,10 @@
      "this doc: "
      [:a
       {:href "http://gtrak.github.io/bohconf.clojure"}
-      "http://gtrak.github.io/bohconf.clojure"]]]
-   [:section [:h3 "Let's hack!"]]
-   [:section
-    [:h3 "Thanks for coming!"]]])
+      "http://gtrak.github.io/bohconf.clojure"]]
+    [:div
+     "Clojure for Rubyists"
+     [:a
+      {:href "https://www.youtube.com/watch?v=QmsYWSz1jsk"}
+      "https://www.youtube.com/watch?v=QmsYWSz1jsk"]]]
+   [:section [:h3 "Let's hack!"]]])
