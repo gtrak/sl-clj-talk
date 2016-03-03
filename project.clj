@@ -44,7 +44,7 @@
                 :source-paths ["src/cljs"]
                 :compiler {:output-to "resources/public/js/compiled/sl_clj_talk.js"
                            :main sl-clj-talk.core
-                           :optimizations :advanced
+                           :optimizations :simple
                            :pretty-print false}}]}
 
   :figwheel {;; :http-server-root "public" ;; default and assumes "resources"
