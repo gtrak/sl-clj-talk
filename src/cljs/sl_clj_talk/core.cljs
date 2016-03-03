@@ -23,7 +23,7 @@
     (fn [this]
       (let [reveal-state (:reveal-state @app-state)]
         (doto js/Reveal
-          .initialize
+          (.initialize (clj->js {:history true}))
           (cond->
               reveal-state  (.setState reveal-state)))
         ))}))
