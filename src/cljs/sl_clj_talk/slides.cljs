@@ -258,9 +258,7 @@
     [fragment-list :ol
      "Compose Systems"
      "Change our minds"
-     "Re-use components in different contexts, processes, servers, etc.."]
-    [:small.pad80.fragment
-     "Data/Values give us the ability to decouple things easily"]]
+     "Re-use components in different contexts, processes, servers, etc.."]]
 
    ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
    ;; How it actually works
@@ -271,6 +269,7 @@
     [clj-example
      0
      ";; function composition with comp (applied right to left)"
+     ";; and partial function application with partial"
      "(def dec-and-double (comp (partial * 2) dec))"
      "(dec-and-double 3) ;; => 4"]
     [clj-example
