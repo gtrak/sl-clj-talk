@@ -43,7 +43,7 @@
 (defn clj-example [indent-n & ss]
   [:pre
    [code-block
-    "clojure"
+    "clojure clojure-repl"
     (str
      ;; "\n"
      (cstring/join "\n"
@@ -57,7 +57,7 @@
 (defn clj-repl-example [indent-n & ss]
   [:pre
    [code-block
-    "clojure"
+    "clojure clojure-repl"
     (str
      ;; "\n"
      (cstring/join "\n"

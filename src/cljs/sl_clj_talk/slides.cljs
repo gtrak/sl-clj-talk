@@ -114,27 +114,66 @@
 
 (defn everything-is-data []
   [:section
-   [:h2 "Everything is Data"]
-   [clj-example
-    0
-    ";; semicolons are comments, commas are ignored,"
-    ";; check out this weird hash-map"
-    "{:a-keyword 5,"
-    " \"a string key\" \"a string value\","
-    " [\"a\" :vector \"acting\" :as [:a :compound] \"key\"]"
-    " (fn [] \"a no-arg function\n  that returns this multi-line string,\n  the function itself is the value\"),"
-    " + '(functions can be keys too, and when\n    you quote symbols, you just\n    have symbols, not what they represent)}"]
-
-   [:div.fragment
-    "Evals to.."
+   [:section
+    [:h3 "Everything is Data"]
     [clj-example
      0
+     ";; semicolons are comments, commas are ignored,"
+     ";; check out this weird hash-map"
      "{:a-keyword 5,"
      " \"a string key\" \"a string value\","
      " [\"a\" :vector \"acting\" :as [:a :compound] \"key\"]"
-     " #&ltuser$eval331$fn__332 user$eval331$fn__332@a585ef>,"
-     " #&ltcore$_PLUS_ clojure.core$_PLUS_@20a12d8f>"
-     " (functions can be keys too and when you quote symbols\n you just have symbols not what they represent)}"]]])
+     " (fn [] \"a no-arg function\n  that returns this multi-line string,\n  the function itself is the value\"),"
+     " + '(functions can be keys too, and when\n    you quote symbols, you just\n    have symbols, not what they represent)}"]
+
+    [:div.fragment
+     "Evals to.."
+     [clj-example
+      0
+      "{:a-keyword 5,"
+      " \"a string key\" \"a string value\","
+      " [\"a\" :vector \"acting\" :as [:a :compound] \"key\"]"
+      " #&ltuser$eval331$fn__332 user$eval331$fn__332@a585ef>, ;; anon fn"
+      " #&ltcore$_PLUS_ clojure.core$_PLUS_@20a12d8f> ;; +"
+      " (functions can be keys too and when you quote symbols\n you just have symbols not what they represent)"]]]
+
+   [:section
+    "We use data to model our domains"
+    [:div.fragment
+     [clj-example
+      0
+      ";; ring http request"
+      "{:request-method :get"
+      " :server-name \"localhost\""
+      " :server-port 9000"
+      " :scheme :http"
+      " :uri \"/foo/bar\""
+      " :body #org.httpkit.BytesInputStream[...]"
+      " ... }"]]
+
+    [:div.fragment
+     [clj-example
+      0
+      ";; hiccup html"
+      "[:div.some-class"
+      " {:id \"foo\""
+      "  :contentEditable true}"
+      " \"Edit Me!\"]"]]
+
+    [:div.fragment
+     [clj-example
+      0
+      ";; harmonikit synth patch"
+      "{:master-curves"
+      "  {:release 0.0,"
+      "   :decay -0.15301251,"
+      "   :attack 0.52743465,"
+      "   :fade -0.8029424},"
+      "   :high-harmonics {:taper 0.015117645, :toggle 1.0},"
+      "   :name \"Patch 42\","
+      "   :master {:toggle 1.0}"
+      " ... }"]]
+    ]])
 
 
 (defn immutability-intro []
