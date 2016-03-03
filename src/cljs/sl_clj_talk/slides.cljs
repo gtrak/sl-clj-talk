@@ -328,17 +328,19 @@
 
    [:section
     [:h2 "1. Compose Systems"]
-    [:small "Clojure encourages the composition of simple functions into complex applications"]
+    [:small "Clojure encourages the composition of simple functions into more complex ones"]
     [clj-example
      0
      ";; function composition with comp (applied right to left)"
      ";; and partial function application with partial"
      "(def dec-and-double (comp (partial * 2) dec))"
      "(dec-and-double 3) ;; => 4"]
-    [clj-example
-     0
-     ";; more complex example: api routing with compojure"
-     "(ns hello-world.core
+    [:div.fragment
+     [:small "at a higher level, complex functions are composed into systems"]
+     [clj-example
+      0
+      ";; more complex example: api routing with compojure"
+      "(ns hello-world.core
   (:require [compojure.core :refer :all]
             [compojure.route :as route]))
 
@@ -351,7 +353,7 @@
   (GET \"/foo\" [] \"<h1>Hello Foo</h1>\"))
 
 ;; routes composes route definitions into an app handler
-(def app (routes home-routes foo-routes))"]]
+(def app (routes home-routes foo-routes))"]]]
 
    [:section
     [:h2 "2. Change Our Minds"]
