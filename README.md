@@ -4,7 +4,7 @@ Slides for our Clojure talk at Smart Logic. Based on a [Bohconf talk by Jason Le
 
 ## Overview
 
-FIXME: Write a paragraph about the library/project and highlight its goals.
+Uses React (via Reagent) and wraps Reveal.js to provide rich interactive slides.
 
 ## Setup
 
@@ -31,6 +31,17 @@ To create a production build run:
 
 And open your browser in `resources/public/index.html`. You will not
 get live reloading, nor a REPL.
+
+### Cider Emacs Setup
+
+1. M-x cider-jack-in
+2. `> (use 'figwheel-sidecar.repl-api)`
+3. `> (start-figwheel!)`
+4. Open a browser to http://localhost:3449
+
+### CLJ Examples
+
+Load up a repl and look in `/dev/user.clj`
 
 ## License
 
