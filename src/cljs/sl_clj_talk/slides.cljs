@@ -270,7 +270,7 @@
     [:small "Clojure encourages the composition of simple functions into complex applications"]
     [clj-example
      0
-     ";; function composition with comp (applied left to right)"
+     ";; function composition with comp (applied right to left)"
      "(def dec-and-double (comp (partial * 2) dec))"
      "(dec-and-double 3) ;; => 4"]
     [clj-example
