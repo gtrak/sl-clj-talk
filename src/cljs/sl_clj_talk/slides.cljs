@@ -156,11 +156,23 @@
 (defn immutability-questions []
   [:section
    "Some Questions..."
-   [fragment-list :ul
-    "Q: Why should I care about (immutable) values?"
-    "A: I can write code and rest assured that other parts of my program can't change the data that I'm working on."
-    "Q: But I thought every program is simply a short-lived http request handler that talks to a database? We just throw the program state out after every request!"
-    "A: Well, that's one way to do it. All of your state will live in your database, which will happily service (and resolve) concurrent reads and writes from millions of clients at acceptable speeds forever."]])
+   [:section
+    [:ul
+     [:li
+      "Q: Why should I care about (immutable) values?"]
+     [:li.fragment
+      "A: I can write code and rest assured that other parts of my program can't
+      change the data that I'm working on."]]]
+   [:section
+    [:ul
+     [:li
+      "Q: But I thought every program is simply a short-lived http request
+      handler that talks to a database? We just throw the program state out
+      after every request!"]
+     [:li.fragment
+      "A: Well, that's one way to do it. All of my state will live in my
+      database, which will happily service (and resolve) concurrent reads and
+      writes from millions of clients at acceptable speeds forever."]]]])
 
 
 (defn ruby-clj []
