@@ -264,7 +264,7 @@
    ;; How it actually works
 
    [:section
-    [:h2 "Compose Systems"]
+    [:h2 "1 Compose Systems"]
     [:small "Clojure encourages the composition of simple functions into complex applications"]
     [clj-example
      0
@@ -291,7 +291,7 @@
 (def app (routes home-routes foo-routes))"]]
 
    [:section
-    [:h2 "Change Our Minds"]
+    [:h2 "2 Change Our Minds"]
     "Read-Eval-Print-Loop (REPL)"
     [fragment-list :ol
      "Read: (read-string \"(+ 1 2)\") => '(+ 1 2)"
@@ -323,7 +323,7 @@
    ;; maybe give them a repl to play with here
 
    [:section
-    [:h2 "Re-Use Components"]
+    [:h2 "3 Re-Use Components"]
     [:p "Clojure is a hosted language, currently implemented in three environments:"]
     [fragment-list :ul
      "The Java Virtual Machine (JVM)"
