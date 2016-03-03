@@ -187,7 +187,7 @@
    [fragment-list
     :ol
     [:div
-     "Every object is also a 'value'"
+     "Every 'object' is also a value"
      [clj-example 0
       ";; even functions"
       "(defn hello-world [] \"Hello, world!\")"
@@ -471,8 +471,8 @@
     [:div.fragment
      "We can compose functions into systems, across platforms."]]
 
-   ;; TODO: ruby-to-clojure-examples
-   ;; TODO: microservices?
+   [:section
+    [:h3 "Q&A: Microservices"]]
 
    [ruby-clj]
 
