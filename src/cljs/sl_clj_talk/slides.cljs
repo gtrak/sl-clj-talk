@@ -2,6 +2,7 @@
   (:require
    [sl-clj-talk.repl :refer [replet]]
    [sl-clj-talk.util :refer [wrap-highlight
+                             code-block
                              js-example
                              clj-example
                              clj-repl-example
@@ -159,10 +160,32 @@
     "Q: Why should I care about (immutable) values?"
     "A: I can write code and rest assured that other parts of my program can't change the data that I'm working on."
     "Q: But I thought every program is simply a short-lived http request handler that talks to a database? We just throw the program state out after every request!"
-    "A: Well, that's one way to do it."]])
+    "A: Well, that's one way to do it. All of your state will live in your database, which will happily service (and resolve) concurrent reads and writes from millions of clients at acceptable speeds forever."]])
 
 
+(defn ruby-clj []
+  [:section
+   [:h3 "Ruby -> Clojure"]
+   [:div.fragment
+    "Assignment"
+    [code-block "ruby"
+     "an-symbol = :an-keyword"]]
+   ;; [:br]
+   [:div.fragment
+    [code-block "clojure"
+     "(def an-symbol :an-keyword)"]]
+   [:small.fragment
+    "But don't do it again"]
 
+   [:div.fragment
+    "Functions"
+    [code-block "ruby"
+     "def square (x) x * x end"]]
+   ;; [:br]
+   [:div.fragment
+    [code-block "clojure"
+     "(defn square [x] (* x x))"]]
+   ])
 
 (defn misc-examples []
   [:section
@@ -359,10 +382,14 @@
     (some-> string
             str
             (js/encodeURIComponent)
-            (.replace \"+\" \"%20\"))))"]]]
+            (.replace \"+\" \"%20\"))))"]]
+    [:div.fragment
+     "We can compose functions into systems, across platforms."]]
 
    ;; TODO: ruby-to-clojure-examples
    ;; TODO: microservices?
+
+   [ruby-clj]
 
    [misc-examples]
 

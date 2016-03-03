@@ -5,6 +5,7 @@
    cljsjs.highlight.langs.clojure-repl
    cljsjs.highlight.langs.clojure
    cljsjs.highlight.langs.javascript
+   cljsjs.highlight.langs.ruby
    [reagent.core :as reagent ;; :refer [atom]
     ]
    [sl-clj-talk.slides :refer [slides-div]]))
