@@ -21,7 +21,11 @@
 
   :clean-targets ^{:protect false} ["resources/public/js/compiled" "target"]
 
-  :profiles {:dev {:dependencies [[com.cemerick/piggieback "0.2.1"]
+  :profiles {:dev {:source-paths ["src" "src/cljs" "dev"]
+                   :dependencies [[compojure "1.4.0"]
+                                  [http-kit "2.1.18"]
+                                  [hiccup "1.0.5"]
+                                  [com.cemerick/piggieback "0.2.1"]
                                   [figwheel-sidecar "0.5.0-6"]]
                    :repl-options {:nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}}}
 

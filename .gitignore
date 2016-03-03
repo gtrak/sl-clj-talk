@@ -1,5 +1,6 @@
 .DS_Store
 /resources/public/js/compiled/**
+/resources/data/*.csv
 figwheel_server.log
 pom.xml
 *jar
