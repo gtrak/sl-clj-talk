@@ -4,7 +4,8 @@
    [clojure.string :as str]
    [compojure.core :refer :all]
    [compojure.route :as route]
-   [org.httpkit.server :as s]))
+   [org.httpkit.server :as s]
+   [figwheel-sidecar.repl-api :as f]))
 
 
 ;; Binding/Destructuring

@@ -7,26 +7,27 @@
   :min-lein-version "2.5.3"
 
   :dependencies [[org.clojure/clojure "1.8.0"]
-                 [org.clojure/clojurescript "1.7.228"]
-                 [org.clojure/core.async "0.2.374"
+                 [org.clojure/clojurescript "1.9.293"]
+                 [org.clojure/core.async "0.2.395"
                   :exclusions [org.clojure/tools.reader]]
-                 [reagent "0.5.1"]
-                 [replumb "0.1.5-3"]
-                 [cljsjs/highlight "8.4-0"]]
+                 [reagent "0.6.0"]
+                 [com.cognitect/transit-cljs "0.8.239"]
+                 [replumb "0.2.4"]
+                 [cljsjs/highlight "9.6.0-0"]]
 
-  :plugins [[lein-figwheel "0.5.0-6"]
-            [lein-cljsbuild "1.1.2" :exclusions [[org.clojure/clojure]]]]
+  :plugins [[lein-figwheel "0.5.8"]
+            [lein-cljsbuild "1.1.3" :exclusions [[org.clojure/clojure]]]]
 
   :source-paths ["src" "src/cljs"]
 
   :clean-targets ^{:protect false} ["resources/public/js/compiled" "target"]
 
   :profiles {:dev {:source-paths ["src" "src/cljs" "dev"]
-                   :dependencies [[compojure "1.4.0"]
-                                  [http-kit "2.1.18"]
+                   :dependencies [[compojure "1.5.1"]
+                                  [http-kit "2.2.0"]
                                   [hiccup "1.0.5"]
                                   [com.cemerick/piggieback "0.2.1"]
-                                  [figwheel-sidecar "0.5.0-6"]]
+                                  [figwheel-sidecar "0.5.8"]]
                    :repl-options {:nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}}}
 
   :cljsbuild {:builds
