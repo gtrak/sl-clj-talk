@@ -1,0 +1,93 @@
+* Slides
+
+* Intro
+  - 
+  - 
+
+* Remove ruby references
+
+* Talk about es6
+  syntax
+  sugar
+
+* Don't freak out
+  - homoiconicity
+  - add a list, before showing a function
+  - add evaluated function, quoting to show that it's still a list
+  - evaluation is transformation
+  - show equality
+
+* Everything is Data
+  - flatten it, make it not a map
+  - remove fn
+
+* Add immutable data picture (speed)
+
+* Anything can be a key
+  - Maps are like these things you know
+  - except more powerful
+  - deep equality
+  - work on any kind of key
+  - get rid of buckets values joke
+  - simpler explanation of immutability in the small to large
+
+* Throw out QA
+
+* There are things we don't have to push down to databases, but we do want their semantics
+  - transactions
+  - atomicity
+  - having these constructs in your language can help build an immmutable database and people have done it
+
+* Compose systems
+  - remove compojure
+  - add some data processing on a nested update function
+  - nested group-by
+
+* Change our Minds
+  - Eval is cool and didfferent
+
+* Turn macros arc into top down
+  - Macros are really scary and powerful, what are they?
+  - differentiate them from C macros and Elixir etc
+  - They can call other functions that have been defined to do their work
+  - get rid of 'This is only the beginning'
+
+* REPL
+  - You can connect to a repl anywhere
+    - over a network
+    - in production (unless you don't want to)
+  - not just debugging
+  - core to the lisp experience
+  - leveraged by all clojure tooling
+  - Fix the REPL prompt
+    - mention CLJS
+ 
+* Interop
+  - cljc mention it can be written in the same file
+    - mention moment/joda
+    - third-party components, react, dl4j
+
+* Remove QA microservices
+* Remove synonyms
+
+* What if as a library author...
+  - chaining can be implemented outside of the functions that use it
+    - vs oo
+  - chaining is a 'separate concern'
+  - you don't need builders
+  - you don't need mocks
+  - you don't need monkeypatching
+  - use less text on the collection ops, simpler examples
+  - use more examples
+
+* Macro example
+  - remove docstrings
+  - remove ^once
+  - keep java interop
+  - show macroexpand, add whitespace
+  - uninline letfn into defn
+  - move lazy-seq out so macroexpand-1 will work
+  - would require syntax in other languages
+    - the java class is short
+    - the macro could have been written by anyone
+
