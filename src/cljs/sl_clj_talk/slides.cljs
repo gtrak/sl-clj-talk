@@ -525,5 +525,4 @@
      "Clojure for Rubyists"
      [:a
       {:href "https://www.youtube.com/watch?v=QmsYWSz1jsk"}
-      "https://www.youtube.com/watch?v=QmsYWSz1jsk"]]]
-   [:section [:h3 "Let's hack!"]]])
+      "https://www.youtube.com/watch?v=QmsYWSz1jsk"]]]])
