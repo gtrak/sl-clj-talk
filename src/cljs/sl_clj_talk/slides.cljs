@@ -294,17 +294,14 @@
     "Let's look at a real one."
     [clj-example 0
      "(defmacro lazy-seq"
-     "  \"Takes a body of expressions that returns an ISeq or nil,"
-     "  and yields a Seqable object that will invoke the body only"
-     "  the first time seq is called, and will cache the result and"
-     "  return it on all subsequent seq calls. See also - realized?\""
-     "  {:added \"1.0\"}"
      "  [& body]"
      "  (list 'new 'clojure.lang.LazySeq"
-     "        (list* '^{:once true} fn* [] body)))"
+     "        (list* 'fn* [] body)))"
      "  ;; simply returns a list, allocates a Java object (LazySeq)"
      "  ;; and-wraps your expressions in a function"
+     ""
      "(macroexpand-1 '(lazy-seq ANYTHING1 ANYTHING2))"
+     ""
      ";; => '(new clojure.lang.LazySeq (fn* [] ANYTHING1 ANYTHING2))"]]
 
    [:section
@@ -312,11 +309,28 @@
     [:br]
     "\n          --__--__--__--__\n\n          "
     [clj-example 0
-     "(defn square-wave\n  \"t is the period for a half-cycle\"\n  [t]\n  (letfn\n    [(osc [cur-value so-far]\n       (let [so-far (mod so-far t)\n             next-val (if (zero? so-far)\n                        (- cur-value)\n                        cur-value)]\n         (cons next-val\n               (lazy-seq (osc next-val\n                              (inc so-far))))))]\n    (osc 1 0)))\n          "]
-    [clj-example 0
+     "(defn osc [t cur-value so-far]"
+     "  (let [so-far (mod so-far t)"
+     "        next-val (if (zero? so-far)"
+     "                   (- cur-value)"
+     "    (cons next-val"
+     "          (lazy-seq (osc t"
+     "                         next-val"
+     "                         (inc so-far))))))"
+     ""
+     "(defn square-wave"
+     "  \"t is the period for a half-cycle\""
+     "  [t]"
+     "  (osc t 1 0))"
+     ""
      "(take 10 (square-wave 3))"
-     ";; (-1 -1 -1 1 1 1 -1 -1 -1 1)"]
-    "\n          No mutable variables\n        "]])
+     ";; (-1 -1 -1 1 1 1 -1 -1 -1 1)"
+     ]
+
+    [fragment-list :ul
+     "This would require syntax in most languages\n"
+     "The important part of clojure.lang.LazySeq is around 30 lines of Java"
+     ]]])
 
 
 (defn slides-div []
