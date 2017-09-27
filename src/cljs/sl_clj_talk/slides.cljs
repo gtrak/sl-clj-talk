@@ -225,7 +225,7 @@
       [:li "The sorts of large frameworks that do this don't compose well with each other and don't have all future use-cases covered"]]]]])
 
 
-(defn compose-system []
+(defn compose-systems []
   [:section
    ])
 
