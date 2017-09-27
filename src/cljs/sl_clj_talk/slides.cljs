@@ -17,19 +17,17 @@
   [:section
    [:h1 "Still 'Getting' Clojure"]
    [:h3 "'(Parentheses are just hugs for your code)"]
-   [:small
-    "Original talk by\n            "
+   [:small "Contributions spanning years:"
+    [:br]
+    [:a {:href "http://twitter.com/miltreder"} "Milt Reder"]
+    [:br]
+    [:a {:href "http://twitter.com/gtrakgt"} "Gary Trakhman"]
+    [:br]
     [:a {:href "http://twitter.com/canweriotnow"} "Jason Lewis"]
-    "\n            / "
-    [:a {:href "http://twitter.com/gtrakgt"} "Gary Trakhman"]]
-   [:br]
-   [:small
-    "Cljs Version by\n"
-    [:a {:href "http://twitter.com/miltreder"} "Milt Reder"]]
-   [:br]
-   [:small
-    "With some editing and ruby help from\n"
-    [:a {:href "http://twitter.com/meatcomputer"} "Mikaela Patella"]]])
+    [:br]
+    [:a {:href "http://twitter.com/meatcomputer"} "Mikaela Patella"]
+    [:br]]
+   [:br]])
 
 (defn js-2-clojure []
   [:section
@@ -60,7 +58,7 @@
      "  )"]]
 
    [:div.fragment
-    "Kill the 'return', last thing's always returned."
+    "Remove 'return', the last value is always returned."
     [clj-example
      30
      "(fn [] 5)"]
@@ -72,7 +70,8 @@
    [:p
     "Everything is an expression"]
    [:p.fragment
-    "Just like Ruby!"]])
+    "Pure functions return values!"]
+   [:p.fragment   "It would be pain to write `return` every time."]])
 
 (defn calling-stuff []
   [:section
@@ -93,18 +92,22 @@
    [:h2 "Data"]
    "Should look familiar"
    [clj-data-example
-    25
+    20
     {:key1 5 :key2 nil}
     [1 2 3 4 "five"]]
 
-   [:p.fragment "Don't freak out"]
+   [:p.fragment "Still 'data'"]
 
    [:div.fragment
     [clj-data-example
      20
-     '[1 [2] #{3} {4 4} (constantly 5)]]]
+     "'(this is a list)"]]
+   [:div.fragment
+    [clj-data-example
+     20
+     "'[1 [2] #{3} {4 4} (constantly 5)]"]]
 
-   [:p.fragment "DON'T FREAK OUT"]
+   [:p.fragment "Still 'data', evaluation is transformation"]
 
    [:div.fragment
     [clj-repl-example
@@ -113,32 +116,27 @@
      "(0 1 2 3 4 5 6 7 8 9)"
      "=> (take 11 (range))"
      "(0 1 2 3 4 5 6 7 8 9 10)"
-     "=> (last (range)) ;; Hope you don't mind waiting a long time."]]])
+     "=> (last (range)) ;; This takes a long time."]]])
 
 (defn everything-is-data []
   [:section
    [:section
-    [:h3 "Everything is Data"]
+    [:h3 "Everything is written as composable Data"]
     [clj-example
      0
-     ";; semicolons are comments, commas are ignored,"
-     ";; check out this weird hash-map"
-     "{:a-keyword 5,"
-     " \"a string key\" \"a string value\","
-     " [\"a\" :vector \"acting\" :as [:a :compound] \"key\"]"
-     " (fn [] \"a no-arg function\n  that returns this multi-line string,\n  the function itself is the value\"),"
-     " + '(functions can be keys too, and when\n    you quote symbols, you just\n    have symbols, not what they represent)}"]
+     "[:a-keyword"
+     " 5"
+     " {:a :map}"
+     " #{:a :set}"
+     " \"a string\""
+     " (fn a-function [])"
+     " 'a-function]"]
 
-    [:div.fragment
-     "Evals to.."
-     [clj-example
-      0
-      "{:a-keyword 5,"
-      " \"a string key\" \"a string value\","
-      " [\"a\" :vector \"acting\" :as [:a :compound] \"key\"]"
-      " #&ltuser$eval331$fn__332 user$eval331$fn__332@a585ef>, ;; anon fn"
-      " #&ltcore$_PLUS_ clojure.core$_PLUS_@20a12d8f> ;; +"
-      " (functions can be keys too and when you quote symbols\n you just have symbols not what they represent)"]]]
+    [:div.fragment "What needs to be in place to make this work?"]
+    [:p.fragment
+     "Immutability"]
+    [:p.fragment
+     "Consistent hashing and equality"]]
 
    [:section
     "We use data to model our domains"
@@ -178,14 +176,20 @@
       " ... }"]]
     ]])
 
-
-(defn immutability-intro []
+(defn immutability-intro1 []
   [:section
-   [:h3 "Anything can be a key, because"]
+   [:h3 "Immutability"]
+   [:div.fragment "is as safe as always copying your function's parameters and outputs"]
+   [:div.fragment "but way faster"]
+   [:img {:src "lib/img/persistentvector2.png"}]])
+
+(defn immutability-intro2 []
+  [:section
+   [:h3 "Anything can act as a key, because"]
 
    ;; TODO split or replace
    [fragment-list
-    :ol
+    :ul
     [:div
      "Every 'object' is also a value"
      [clj-example 0
@@ -195,79 +199,35 @@
       ";; same as (def (fn [] ...))"]]
     "Values have true equality"
     "Values Never Change (Immutability)"
-    "Without immutability, objects are just buckets in memory"]
-   [:small.pad80.fragment
-    "...have you ever trusted a bucket with no values?"]])
+    "Mutable objects aren't reliable keys, if their contents change, their hashcodes and equality change.  This breaks hashmaps and programs."]])
 
 (defn immutability-questions []
   [:section
-   "Some Questions..."
+   [:h4 "How immutability affects programs"]
    [:section
     [:ul
-     [:li
-      "Q: Why should I care about (immutable) values?"]
      [:li.fragment
-      "A: I can write code and rest assured that other parts of my program can't
-      change the data that I'm working on."]]]
+      "Code is easier to reuse and changes less when you do."]
+     [:li.fragment
+      "Effects are isolated and explicit"]]]
    [:section
+    [:h4 "We can solve this in other ways"]
     [:ul
-     [:li
-      "Q: But I thought every program is simply a short-lived http request
-      handler that talks to a database? We just throw the program state out
-      after every request!"]
      [:li.fragment
-      "A: Well, that's one way to do it. All of my state will live in my
-      database, which will happily service (and resolve) concurrent reads and
-      writes from millions of clients at acceptable speeds forever."]]]])
+      "Push down important business logic to one or many databases"]
+     [:ul.fragment
+      [:li "Not the right tools for every job."]
+      [:li "Pay for it in infrastructure."]]
+     [:li.fragment
+      "Tear down and rebuild the whole program environment after every network request."]
+     [:ul.fragment
+      [:li "This can be bad for performance"]
+      [:li "The sorts of large frameworks that do this don't compose well with each other and don't have all future use-cases covered"]]]]])
 
 
-(defn ruby-clj []
+(defn compose-system []
   [:section
-   [:h3 "Ruby -> clj"]
-   [:section
-    [:div.fragment
-     "Assignment"
-     [code-block "ruby"
-      "avar = :akeyword"]]
-    [:div.fragment
-     [code-block "clojure"
-      "(def avar :akeyword)"]]
-    [:small.fragment
-     "But don't do it again"]
-
-    [:div.fragment
-     "Functions"
-     [code-block "ruby"
-      "def square (x) x * x end"]]
-    [:div.fragment
-     [code-block "clojure"
-      "(defn square [x] (* x x))"]]
-
-    [:div.fragment
-     "Maps"
-     [code-block "ruby"
-      "amap = {key: \"value\"}"]]
-    [:div.fragment
-     [code-block "clojure"
-      "(def amap {:key \"value\"})"]]]
-
-   [:section
-    [:div
-     "Map Access"
-     [code-block "ruby"
-      "amap[:key]  => \"value\""]]
-    [:div.fragment
-     [code-block "clojure"
-      "(get amap :key) ;; => \"value\""]]
-    [:div.fragment
-     [code-block "clojure"
-      "(:key amap) ;; => \"value\""]]
-    [:div.fragment
-     [code-block "clojure"
-      "(:other-key amap \"foo\") ;; => \"foo\""]]
-    [:div.fragment
-     [code-block "clojure"
-      "(amap :key) ;; => \"value\""]]]])
+   ])
 
 (defn misc-examples []
   [:section
@@ -282,7 +242,7 @@
     "Really useful when you're doing a lot of collection operations, filtering, etc."
     [clj-example 0
      "(->> (range)\n     (filter even?)\n     (map (partial * 2))\n     (take 10)\n     (into []))\n;; [0 4 8 12 16 20 24 28 32 36]\n\n;; versus\n(into []\n      (take 10 (map (partial * 2)\n                    (filter even? (range)))))\n          "]
-    [fragment-list :ol
+    [fragment-list :ul
      "I find the flat one easier to think about."
      "Semantically equivalent."
      "No burden on implementing code. Functions don't care about how they're used."]
@@ -355,13 +315,14 @@
 
 
    ;; immutability
-   [immutability-intro]
+   [immutability-intro1]
+   [immutability-intro2]
    [immutability-questions]
 
    [:section
     [:h2 "What We Really Want"]
     "Tools that let us"
-    [fragment-list :ol
+    [fragment-list :ul
      "Compose Systems"
      "Change our minds"
      "Re-use components in different contexts, processes, servers, etc.."]]
@@ -401,7 +362,7 @@
    [:section
     [:h2 "2. Change Our Minds"]
     "Read-Eval-Print-Loop (REPL)"
-    [fragment-list :ol
+    [fragment-list :ul
      "Read: (read-string \"(+ 1 2)\") => '(+ 1 2)"
      "Eval: (eval '(+ 1 2)) => 3"
      "What if there's something in the middle?"]
@@ -474,7 +435,7 @@
    [:section
     [:h3 "Q&A: Microservices"]]
 
-   [ruby-clj]
+   [compose-systems]
 
    [misc-examples]
 
