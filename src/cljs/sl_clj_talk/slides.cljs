@@ -220,55 +220,6 @@
       database, which will happily service (and resolve) concurrent reads and
       writes from millions of clients at acceptable speeds forever."]]]])
 
-
-(defn ruby-clj []
-  [:section
-   [:h3 "Ruby -> clj"]
-   [:section
-    [:div.fragment
-     "Assignment"
-     [code-block "ruby"
-      "avar = :akeyword"]]
-    [:div.fragment
-     [code-block "clojure"
-      "(def avar :akeyword)"]]
-    [:small.fragment
-     "But don't do it again"]
-
-    [:div.fragment
-     "Functions"
-     [code-block "ruby"
-      "def square (x) x * x end"]]
-    [:div.fragment
-     [code-block "clojure"
-      "(defn square [x] (* x x))"]]
-
-    [:div.fragment
-     "Maps"
-     [code-block "ruby"
-      "amap = {key: \"value\"}"]]
-    [:div.fragment
-     [code-block "clojure"
-      "(def amap {:key \"value\"})"]]]
-
-   [:section
-    [:div
-     "Map Access"
-     [code-block "ruby"
-      "amap[:key]  => \"value\""]]
-    [:div.fragment
-     [code-block "clojure"
-      "(get amap :key) ;; => \"value\""]]
-    [:div.fragment
-     [code-block "clojure"
-      "(:key amap) ;; => \"value\""]]
-    [:div.fragment
-     [code-block "clojure"
-      "(:other-key amap \"foo\") ;; => \"foo\""]]
-    [:div.fragment
-     [code-block "clojure"
-      "(amap :key) ;; => \"value\""]]]])
-
 (defn misc-examples []
   [:section
    [:section
@@ -490,11 +441,6 @@
             (.replace \"+\" \"%20\"))))"]]
     [:div.fragment
      "We can compose functions into systems, across platforms."]]
-
-   [:section
-    [:h3 "Q&A: Microservices"]]
-
-   [ruby-clj]
 
    [misc-examples]
 
