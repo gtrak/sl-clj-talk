@@ -276,18 +276,21 @@
    [:section
     "\n          What if, as a library author, you could just not write that\n          fluent interface code at all?\n          "
     [clj-example 0
-     "\n(use 'clojure.string)\n\n;; These are equivalent\n\n(map trim (split (upper-case \"hola, world\") #\",\"))\n;; (\"HOLA\" \"WORLD\")\n\n(-> \"hola, world\"\n    upper-case\n    (split #\",\")\n    (->> (map trim)))\n;; (\"HOLA\" \"WORLD\")\n          "]]
+     "\n(use 'clojure.string)\n\n;; These are equivalent\n\n(map trim (split (upper-case \"hola, world\") #\",\"))\n;; (\"HOLA\" \"WORLD\")\n\n(-> \"hola, world\"\n    upper-case\n    (split #\",\")\n    (->> (map trim)))\n;; (\"HOLA\" \"WORLD\")\n          "]
+    [fragment-list :ul
+     "Chaning can be implemented outside of the functions that use it"
+     "It's a 'separate concern'"]]
 
    [:section
-    "Really useful when you're doing a lot of collection operations, filtering, etc."
+    "Functions don't care how you use them"
     [clj-example 0
      "(->> (range)\n     (filter even?)\n     (map (partial * 2))\n     (take 10)\n     (into []))\n;; [0 4 8 12 16 20 24 28 32 36]\n\n;; versus\n(into []\n      (take 10 (map (partial * 2)\n                    (filter even? (range)))))\n          "]
-    [fragment-list :ol
-     "I find the flat one easier to think about."
-     "Semantically equivalent."
-     "No burden on implementing code. Functions don't care about how they're used."]
-    [:p.fragment
-     "\n          Giving the user choices is more effective with more powerful languages. Leads to simple, composable libraries."]]
+    [fragment-list :ul
+     [:div "When you focus on input and output, you dont need:"
+      [fragment-list :ul
+       "builders"
+       "mocks"
+       "monkeypatching"]]]]
 
    [:section
     [:h3 "Macros"]
@@ -302,7 +305,10 @@
      ""
      "(macroexpand-1 '(lazy-seq ANYTHING1 ANYTHING2))"
      ""
-     ";; => '(new clojure.lang.LazySeq (fn* [] ANYTHING1 ANYTHING2))"]]
+     ";; => '(new clojure.lang.LazySeq (fn* [] ANYTHING1 ANYTHING2))"]
+    [fragment-list :ul
+     "The important part of clojure.lang.LazySeq is around 30 lines of Java"
+     "The macro could have been written by anyone"]]
 
    [:section
     "Let's create an infinite sequence representing a square-wave"
@@ -328,9 +334,9 @@
      ]
 
     [fragment-list :ul
-     "This would require syntax in most languages\n"
-     "The important part of clojure.lang.LazySeq is around 30 lines of Java"
-     ]]])
+     "This would require special syntax in most languages"
+     "We just call the lazy-seq macro like a function"
+     [:div "So the syntax doesn't deviate...  " [:span.fragment "It's just a list!"]]]]])
 
 
 (defn slides-div []
