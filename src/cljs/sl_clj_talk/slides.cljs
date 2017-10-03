@@ -226,7 +226,70 @@
 
 (defn compose-systems []
   [:section
-   ])
+   [:section
+    [:h2 "1. Compose Systems"]
+    [:small "Clojure encourages the composition of simple functions into more complex ones"]
+    [clj-example
+     0
+     ";; function composition with comp (applied right to left)"
+     ";; and partial function application with partial"
+     "(def dec-and-double (comp (partial * 2) dec))"
+     "(dec-and-double 3) ;; => 4"]]
+   [:section
+    [:small "functions are all generic and totally reusable"]
+    [clj-example
+     0
+     "(defn nested-group-by
+  [[kf & more :as kfs] coll]
+  (if (seq kfs)
+    (reduce (fn [acc [k vs]]
+              (assoc acc k (nested-group-by more vs)))
+            {}
+            (group-by kf coll))
+    coll))
+
+(nested-group-by [even? (partial > 2) (partial > 4)] (range 10))
+
+=> {true {true {true [0]},
+          false {true [2],
+                 false [4 6 8]}},
+    false {true {true [1]},
+           false {true [3],
+                  false [5 7 9]}}}
+"]]
+   [:section
+    [:small "functions are all generic and totally reusable 2"]
+    [clj-example 0 "(defn a-time
+  []
+  (-> (java.util.Date.)
+      .getTime
+      rand
+      long
+      java.util.Date.
+      .toInstant
+      (.atZone (java.time.ZoneId/systemDefault))
+      .toLocalDate))
+"]
+    [clj-example 0 "
+(nested-group-by
+  [#(.getYear %)
+   #(.getMonthValue %)
+   #(.getDayOfMonth %)]
+  (take 10 (repeatedly a-time)))
+
+=> {1984 {6 {25 [#object[java.time.LocalDate 0x44a59c68 \"1984-06-25\"]]}},
+    1973 {12 {19 [#object[java.time.LocalDate 0x13eff0c1 \"1973-12-19\"]]}},
+    2011 {2 {28 [#object[java.time.LocalDate 0x16b37ac7 \"2011-02-28\"]]},
+          9 {28 [#object[java.time.LocalDate 0x466db5f4 \"2011-09-28\"]]}},
+    2001 {1 {18 [#object[java.time.LocalDate 0x7ca21cec \"2001-01-18\"]]}},
+    2008 {5 {10 [#object[java.time.LocalDate 0x6003fef0 \"2008-05-10\"]]}},
+    1994 {11 {5 [#object[java.time.LocalDate 0x595bdd13 \"1994-11-05\"]]}},
+    1975 {1 {12 [#object[java.time.LocalDate 0x7a1594ca \"1975-01-12\"]]}},
+    1999 {11 {8 [#object[java.time.LocalDate 0x6c992d3e \"1999-11-08\"]]}},
+    2014 {8 {6 [#object[java.time.LocalDate 0x47a10f73 \"2014-08-06\"]]}}}
+"]
+    ]])
+
 
 (defn misc-examples []
   [:section
@@ -348,34 +411,7 @@
    ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
    ;; How it actually works
 
-   [:section
-    [:h2 "1. Compose Systems"]
-    [:small "Clojure encourages the composition of simple functions into more complex ones"]
-    [clj-example
-     0
-     ";; function composition with comp (applied right to left)"
-     ";; and partial function application with partial"
-     "(def dec-and-double (comp (partial * 2) dec))"
-     "(dec-and-double 3) ;; => 4"]
-    [:div.fragment
-     [:small "at a higher level, complex functions are composed into systems"]
-     [clj-example
-      0
-      ";; more complex example: api routing with compojure"
-      "(ns hello-world.core
-  (:require [compojure.core :refer :all]
-            [compojure.route :as route]))
-
-;; defroutes is a macro used to define compojure routes
-(defroutes home-routes
-  (GET \"/\" [] \"<h1>Hello World</h1>\")
-  (route/not-found \"<h1>Page not found</h1>\"))
-
-(defroutes foo-routes
-  (GET \"/foo\" [] \"<h1>Hello Foo</h1>\"))
-
-;; routes composes route definitions into an app handler
-(def app (routes home-routes foo-routes))"]]]
+   [compose-systems]
 
    [:section
     [:h2 "2. Change Our Minds"]
@@ -450,7 +486,6 @@
     [:div.fragment
      "We can compose functions into systems, across platforms."]]
 
-   [compose-systems]
    [misc-examples]
 
    [:section
