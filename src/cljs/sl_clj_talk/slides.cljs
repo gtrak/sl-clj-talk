@@ -436,14 +436,15 @@
      "Leverage rich editor integrations with tools like cider-emacs, cursive IDE, and vim-fireplace"]]
 
    [:section
-    [:div "You can connect to a REPL anywhere"]
-    [fragment-list :ul
-     "over a network"
-     "in production (unless you don't want to)"]]
-   [:section
-    [:div "It's not just for debugging..."]
-    [:div.fragment "...It's core to the Lisp experience"]
-    [:div.fragment "And is leveraged by all Clojure tooling"]]
+    [:section
+     [:div "You can connect to a REPL anywhere"]
+     [fragment-list :ul
+      "over a network"
+      "in production (unless you don't want to)"]]
+    [:section
+     [:div "It's not just for debugging..."]
+     [:div.fragment "...It's core to the Lisp experience"]
+     [:div.fragment "And is leveraged by all Clojure tooling"]]]
    [:section
     [:div "And between reading and evaluation..."]
     [:h2.fragment "Macros"]
