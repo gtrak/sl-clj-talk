@@ -409,7 +409,11 @@
     [:div "And between reading and evaluation..."]
     [:h2.fragment "Macros"]
     [:div.fragment
-     "Let you manipulate code before evaluation"]
+     [clj-example 0
+      "(defmacro infix
+  \"Use this macro when you pine for the notation of your childhood\"
+  [infixed]
+  (list (second infixed) (first infixed) (last infixed)))"]]
     [fragment-list :ul
      "Written in Clojure, with the full power of the language"
      "No parsing"
