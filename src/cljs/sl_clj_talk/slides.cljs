@@ -259,7 +259,7 @@
 "]]
    [:section
     [:small "functions are all generic and totally reusable 2"]
-    [clj-example 0 "(defn a-time
+    [clj-example 0 "(defn random-time
   []
   (-> (java.util.Date.)
       .getTime
@@ -269,14 +269,17 @@
       .toInstant
       (.atZone (java.time.ZoneId/systemDefault))
       .toLocalDate))
-"]
+"]]
+   [:section
     [clj-example 0 "
 (nested-group-by
   [#(.getYear %)
    #(.getMonthValue %)
    #(.getDayOfMonth %)]
-  (take 10 (repeatedly a-time)))
-
+  (take 10 (repeatedly random-time)))
+"]
+    [:div {:style {:font-size "80%"}}
+     [clj-example 0 "
 => {1984 {6 {25 [#object[java.time.LocalDate 0x44a59c68 \"1984-06-25\"]]}},
     1973 {12 {19 [#object[java.time.LocalDate 0x13eff0c1 \"1973-12-19\"]]}},
     2011 {2 {28 [#object[java.time.LocalDate 0x16b37ac7 \"2011-02-28\"]]},
@@ -287,8 +290,8 @@
     1975 {1 {12 [#object[java.time.LocalDate 0x7a1594ca \"1975-01-12\"]]}},
     1999 {11 {8 [#object[java.time.LocalDate 0x6c992d3e \"1999-11-08\"]]}},
     2014 {8 {6 [#object[java.time.LocalDate 0x47a10f73 \"2014-08-06\"]]}}}
-"]
-    ]])
+"]]]
+    ])
 
 
 (defn misc-examples []
