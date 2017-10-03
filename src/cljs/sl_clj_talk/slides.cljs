@@ -421,19 +421,11 @@
     "Read-Eval-Print-Loop (REPL)"
     [fragment-list :ul
      "Read: (read-string \"(+ 1 2)\") => '(+ 1 2)"
-     "Eval: (eval '(+ 1 2)) => 3"
-     "What if there's something in the middle?"]
+     "Eval: (eval '(+ 1 2)) => 3"]
     [:div.fragment
      [clj-example
       0
       "\n(class (read-string \"(+ 1 2)\"))\n;; clojure.lang.PersistentList\n\n(map class (read-string \"(+ 1 2)\"))\n;; (clojure.lang.Symbol java.lang.Long java.lang.Long)\n          "]]]
-
-
-   ;; TODO.. just a rando example. move or remove?
-   [:section
-    [clj-example 10
-     "\n(defn only-even!\n [val]\n (if (and (integer? val) (odd? val))\n   (inc val)\n   val))\n\n(map only-even! (read-string \"(+ 1 2)\"))\n;; '(+ 2 2)\n\n(eval (map only-even! (read-string \"(+ 1 2)\")))\n;; 4\n          "]
-    "\n\nThis is only the beginning\n        "]
 
    [:section
     [:h3 "REPL-Driven Development"]
@@ -442,7 +434,28 @@
      "Redefine anything at runtime"
      "Test ideas by implementing them immediately"
      "Leverage rich editor integrations with tools like cider-emacs, cursive IDE, and vim-fireplace"]]
+
    [:section
+    [:div "You can connect to a REPL anywhere"]
+    [fragment-list :ul
+     "over a network"
+     "in production (unless you don't want to)"]]
+   [:section
+    [:div "It's not just for debugging..."]
+    [:div.fragment "...It's core to the Lisp experience"]
+    [:div.fragment "And is leveraged by all Clojure tooling"]]
+   [:section
+    [:div "And between reading and evaluation..."]
+    [:h2.fragment "Macros"]
+    [:div.fragment
+     "Let you manipulate code before evaluation"]
+    [fragment-list :ul
+     "Written in Clojure, with the full power of the language"
+     "No parsing"
+     "More powerful than pure compiler macros (like in C)"
+     "Can call other functions that have been defined to do their work"]]
+
+   #_[:section
     [:h3 "Try it out!"]
     [:small "This toy ClojureScript REPL can evaluate arbitrary code."]
     [replet]]
@@ -465,7 +478,7 @@
      "(type \"foo\") ;; => #object[String \"function String() { [native code] }\"]"]
 
     [:div.fragment
-     [:small "With Reader Conditionals, we can write Clojure source for multiple targets:"]
+     [:small "With Reader Conditionals, we can write Clojure source for multiple targets in a single source file."]
      [clj-example 0
       ";; dates
  (.getTime
@@ -486,8 +499,19 @@
             str
             (js/encodeURIComponent)
             (.replace \"+\" \"%20\"))))"]]
-    [:div.fragment
-     "We can compose functions into systems, across platforms."]]
+    [:div.fragment "We can compose functions into systems, across platforms"]
+    ]
+   [:section
+    [:div "We can use any library from the host language"]
+    [fragment-list :ul
+     "Joda Time"
+     "processing"
+     "overtone"
+     "React"
+     "Dl4j"
+     "Three.js"
+     ]
+    [:div.fragment "Which is empowering"]]
 
    [misc-examples]
 
