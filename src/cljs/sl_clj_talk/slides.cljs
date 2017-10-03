@@ -271,16 +271,15 @@
       .toLocalDate))
 "]]
    [:section
-    [clj-example 0 "
-(nested-group-by
+    [clj-example 0 "(nested-group-by
   [#(.getYear %)
    #(.getMonthValue %)
    #(.getDayOfMonth %)]
   (take 10 (repeatedly random-time)))
 "]
     [:div {:style {:font-size "80%"}}
-     [clj-example 0 "
-=> {1984 {6 {25 [#object[java.time.LocalDate 0x44a59c68 \"1984-06-25\"]]}},
+     [clj-example 0
+      "=> {1984 {6 {25 [#object[java.time.LocalDate 0x44a59c68 \"1984-06-25\"]]}},
     1973 {12 {19 [#object[java.time.LocalDate 0x13eff0c1 \"1973-12-19\"]]}},
     2011 {2 {28 [#object[java.time.LocalDate 0x16b37ac7 \"2011-02-28\"]]},
           9 {28 [#object[java.time.LocalDate 0x466db5f4 \"2011-09-28\"]]}},
