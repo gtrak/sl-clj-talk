@@ -426,7 +426,7 @@
      "(type \"foo\") ;; => #object[String \"function String() { [native code] }\"]"]
 
     [:div.fragment
-     [:small "With Reader Conditionals, we can write Clojure source for multiple targets:"]
+     [:small "With Reader Conditionals, we can write Clojure source for multiple targets in a single source file."]
      [clj-example 0
       ";; dates
  (.getTime
@@ -447,8 +447,19 @@
             str
             (js/encodeURIComponent)
             (.replace \"+\" \"%20\"))))"]]
-    [:div.fragment
-     "We can compose functions into systems, across platforms."]]
+    [:div.fragment "We can compose functions into systems, across platforms"]
+    ]
+   [:section
+    [:div "We can use any library from the host language"]
+    [fragment-list :ul
+     "Joda Time"
+     "processing"
+     "overtone"
+     "React"
+     "Dl4j"
+     "Three.js"
+     ]
+    [:div.fragment "Which is empowering"]]
 
    [compose-systems]
    [misc-examples]
