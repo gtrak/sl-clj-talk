@@ -428,14 +428,13 @@
       "\n(class (read-string \"(+ 1 2)\"))\n;; clojure.lang.PersistentList\n\n(map class (read-string \"(+ 1 2)\"))\n;; (clojure.lang.Symbol java.lang.Long java.lang.Long)\n          "]]]
 
    [:section
-    [:h3 "REPL-Driven Development"]
-    [:p "Lets you"]
-    [fragment-list :ul
-     "Redefine anything at runtime"
-     "Test ideas by implementing them immediately"
-     "Leverage rich editor integrations with tools like cider-emacs, cursive IDE, and vim-fireplace"]]
-
-   [:section
+    [:section
+     [:h3 "REPL-Driven Development"]
+     [:p "Lets you"]
+     [fragment-list :ul
+      "Redefine anything at runtime"
+      "Test ideas by implementing them immediately"
+      "Leverage rich editor integrations with tools like cider-emacs, cursive IDE, and vim-fireplace"]]
     [:section
      [:div "You can connect to a REPL anywhere"]
      [fragment-list :ul
