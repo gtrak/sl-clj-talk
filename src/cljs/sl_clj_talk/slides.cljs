@@ -403,6 +403,16 @@
      "Redefine anything at runtime"
      "Test ideas by implementing them immediately"
      "Leverage rich editor integrations with tools like cider-emacs, cursive IDE, and vim-fireplace"]]
+   [:section
+    [:div "You can connect to a REPL anywhere"]
+    [fragment-list :ul
+     "over a network"
+     "in production (unless you don't want to)"]]
+   [:section
+    [:div "It's not just for debugging..."]
+    [:div.fragment "...It's core to the Lisp experience"]
+    [:div.fragment "And is leveraged by all Clojure tooling"]]
+
    #_[:section
     [:h3 "Try it out!"]
     [:small "This toy ClojureScript REPL can evaluate arbitrary code."]
