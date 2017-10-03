@@ -403,7 +403,7 @@
      "Redefine anything at runtime"
      "Test ideas by implementing them immediately"
      "Leverage rich editor integrations with tools like cider-emacs, cursive IDE, and vim-fireplace"]]
-   [:section
+   #_[:section
     [:h3 "Try it out!"]
     [:small "This toy ClojureScript REPL can evaluate arbitrary code."]
     [replet]]
