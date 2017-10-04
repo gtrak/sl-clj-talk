@@ -33,6 +33,7 @@
 
 * Throw out QA
 
+milt again
 * There are things we don't have to push down to databases, but we do want their semantics
   - transactions
   - atomicity
@@ -40,9 +41,11 @@
 
 * Compose systems
   - remove compojure
+me again
   - add some data processing on a nested update function
   - nested group-by
 
+    milt
 * Change our Minds
   - Eval is cool and didfferent
 
