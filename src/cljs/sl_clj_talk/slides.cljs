@@ -37,7 +37,7 @@
      30
      "function(){"
      "  return 5;"
-     "  }"
+     "}"
      ]]
    [:div.fragment
     "Put some parens around it, kill the braces"
@@ -89,34 +89,38 @@
 
 (defn data-intro []
   [:section
-   [:h2 "Data"]
-   "Should look familiar"
-   [clj-data-example
-    20
-    {:key1 5 :key2 nil}
-    [1 2 3 4 "five"]]
-
-   [:p.fragment "Still 'data'"]
-
-   [:div.fragment
+   [:section
+    [:h2 "Data"]
+    "Should look familiar"
     [clj-data-example
      20
-     "'(this is a list)"]]
-   [:div.fragment
-    [clj-data-example
-     20
-     "'[1 [2] #{3} {4 4} (constantly 5)]"]]
+     {:key1 5 :key2 nil}
+     [1 2 3 4 "five"]]]
 
-   [:p.fragment "Still 'data', evaluation is transformation"]
+   [:section
+    [:p "Still 'data'"]
 
-   [:div.fragment
-    [clj-repl-example
-     0
-     "=> (range 10)"
-     "(0 1 2 3 4 5 6 7 8 9)"
-     "=> (take 11 (range))"
-     "(0 1 2 3 4 5 6 7 8 9 10)"
-     "=> (last (range)) ;; This takes a long time."]]])
+    [:div
+     [clj-data-example
+      20
+      "'(this is a list)"]]
+    [:div
+     [clj-data-example
+      20
+      "'[1 [2] #{3} {4 4} (constantly 5)]"]]]
+
+   [:section
+    [:p "Still 'data', evaluation is transformation"]
+    [:div
+     [clj-repl-example
+      0
+      "=> (range 10)"
+      "(0 1 2 3 4 5 6 7 8 9)"
+      ""
+      "=> (take 11 (range))"
+      "(0 1 2 3 4 5 6 7 8 9 10)"
+      ""
+      "=> (last (range)) ;; This takes a long time."]]]])
 
 (defn everything-is-data []
   [:section
@@ -302,7 +306,7 @@
     [clj-example 0
      "\n(use 'clojure.string)\n\n;; These are equivalent\n\n(map trim (split (upper-case \"hola, world\") #\",\"))\n;; (\"HOLA\" \"WORLD\")\n\n(-> \"hola, world\"\n    upper-case\n    (split #\",\")\n    (->> (map trim)))\n;; (\"HOLA\" \"WORLD\")\n          "]
     [fragment-list :ul
-     "Chaning can be implemented outside of the functions that use it"
+     "Chaining can be implemented outside of the functions that use it"
      "It's a 'separate concern'"]]
 
    [:section
