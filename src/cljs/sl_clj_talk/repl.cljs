@@ -12,29 +12,30 @@
                           user-str))
 
 
-(defn repl-code-block* []
+(defn repl-code-block []
   (let [kids (r/children (r/current-component))]
     (into [:code.hljs.clojure] kids)))
 
-(def repl-code-block (wrap-highlight repl-code-block*))
+;; (def repl-code-block (wrap-highlight repl-code-block*))
 
 (defn input [input-ra results-ra]
   [:div
    [:span
     "cljs-repl> "]
    [:span
-    {:contentEditable true
+    {:content-editable true
      :on-input (fn [e] (reset! input-ra (.-textContent  (.-currentTarget e))))
      :on-key-press (fn [e] (let [k (.-key e)]
-                            (when (= k "Enter")
-                              ;; don't write the enter to the div
-                              (.preventDefault e)
-                              ;; evaluate the input
-                              (eval-string (fn [r] (swap! results-ra conj r))
-                                           @input-ra)
-                              ;; clear the input
-                              (reset! input-ra ""))))
-     :value @input-ra}
+                             (when (= k "Enter")
+                               ;; don't write the enter to the div
+                               (.preventDefault e)
+                               ;; evaluate the input
+                               (eval-string (fn [r] (swap! results-ra conj r))
+                                            @input-ra)
+                               ;; clear the input
+                               (reset! input-ra ""))))
+     :value @input-ra
+     }
     ]])
 
 (defn replet []

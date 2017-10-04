@@ -446,7 +446,11 @@
     [:section
      [:div "It's not just for debugging..."]
      [:div.fragment "...It's core to the Lisp experience"]
-     [:div.fragment "And is leveraged by all Clojure tooling"]]]
+     [:div.fragment "And is leveraged by all Clojure tooling"]]
+    [:section
+     [:h3 "Try it out!"]
+     [:small "This toy ClojureScript REPL can evaluate arbitrary code."]
+     [replet]]]
    [:section
     [:div "And between reading and evaluation..."]
     [:h2.fragment "Macros"]
@@ -465,13 +469,6 @@
      "No parsing"
      "More powerful than pure compiler macros (like in C)"
      "Can call other functions that have been defined to do their work"]]
-
-   #_[:section
-    [:h3 "Try it out!"]
-    [:small "This toy ClojureScript REPL can evaluate arbitrary code."]
-    [replet]]
-   ;; maybe give them a repl to play with here
-
    [:section
     [:h2 "3. Re-Use Components"]
     [:p "Clojure is a hosted language, currently implemented in three environments:"]
