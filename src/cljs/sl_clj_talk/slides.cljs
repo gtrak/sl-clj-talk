@@ -448,10 +448,14 @@
     [:h2.fragment "Macros"]
     [:div.fragment
      [clj-example 0
-      "(defmacro infix
+      ";; from https://www.braveclojure.com/writing-macros/
+(defmacro infix
   \"Use this macro when you pine for the notation of your childhood\"
   [infixed]
-  (list (second infixed) (first infixed) (last infixed)))"]]
+  (list (second infixed) (first infixed) (last infixed)))
+
+(infix (1 + 1))
+; => 2"]]
     [fragment-list :ul
      "Written in Clojure, with the full power of the language"
      "No parsing"
@@ -528,6 +532,9 @@
      [:a
       {:href "http://www.4clojure.com"}
       "http://www.4clojure.com"]]
+    [:div
+     "Free Book: "
+     [:a {:href "https://www.braveclojure.com/"} "https://www.braveclojure.com/"]]
     [:div
      "Cheatsheets: "
      [:a
